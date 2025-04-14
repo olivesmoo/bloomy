@@ -22,15 +22,31 @@ advertisement = ProvideServicesAdvertisement(uart)
 scd4x = adafruit_scd4x.SCD4X(i2c)
 pm25 = PM25_I2C(i2c, reset_pin)
 
+last_status = None
+
 print("Serial number:", [hex(i) for i in scd4x.serial_number])
 scd4x.start_periodic_measurement()
 print("CLUE: Advertising BLE UART service")
+def assess_air_quality(aqdata, co2, temp, humidity):
+    pm25_val = aqdata["pm25 standard"]
+    pm10_val = aqdata["pm100 standard"]
+    particles = aqdata["particles 03um"]
 
+    good_pm = pm25_val <= 12 and pm10_val <= 50 and particles <= 20000
+    good_co2 = co2 <= 1000
+    #good_temp = 18 <= temp <= 27
+    #good_humidity = 30 <= humidity <= 50
+
+    if good_pm and good_co2:
+        return "good"
+    else:
+        return "bad"
 while True:
     ble.start_advertising(advertisement)
     while not ble.connected:
         pass
     print("CLUE: Connected")
+    last_status = None
     while ble.connected:
         time.sleep(1)
         if scd4x.data_ready:
@@ -42,7 +58,7 @@ while True:
             except RuntimeError:
                 print("Unable to read from sensor, retrying...")
                 continue
-
+            msg = assess_air_quality(aqdata, co2, temp, humidity)
             co2_msg = f"CO2: {co2} ppm, Temp: {temp:.1f} C, Humidity: {humidity:.1f}%\n"
             pmsa_msg = (
                 "STD,{},{},{},".format(
@@ -60,9 +76,10 @@ while True:
                     aqdata["particles 100um"],
                 )
             )
-
             print(co2_msg)
             print(pmsa_msg)
-            #uart.write(msg.encode("utf-8"))
-            uart.write(b"Hello from CLUE!\n")
+            if msg != last_status:
+                last_status = msg
+                print("new msg", msg)
+                uart.write(msg.encode("utf-8"))
         time.sleep(1)
