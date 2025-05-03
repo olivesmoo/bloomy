@@ -32,19 +32,24 @@ def assess_air_quality(aqdata, co2, temp, humidity):
     pm10_val = aqdata["pm100 standard"]
     particles = aqdata["particles 03um"]
 
-    good_pm = pm25_val <= 12 and pm10_val <= 50 and particles <= 20000
+    good_pm = pm25_val <= 10 and pm10_val <= 20 and particles <= 20000
     good_co2 = co2 <= 1000
     #good_temp = 18 <= temp <= 27
     #good_humidity = 30 <= humidity <= 50
-
-    if good_pm and good_co2:
-        return "good"
-    else:
+    
+    if not good_pm and not good_co2:
         return "bad"
+    elif not good_pm:
+        return "particle"
+    elif not good_co2:
+        return "co2"
+    else:
+        return "good"
+
 while True:
     ble.start_advertising(advertisement)
     while not ble.connected:
-        pass
+        last_status = None
     print("CLUE: Connected")
     last_status = None
     while ble.connected:
@@ -79,7 +84,11 @@ while True:
             print(co2_msg)
             print(pmsa_msg)
             if msg != last_status:
+                if last_status is None:
+                    time.sleep(2)
                 last_status = msg
                 print("new msg", msg)
                 uart.write(msg.encode("utf-8"))
+                time.sleep(80)
+                last_status = msg
         time.sleep(1)
