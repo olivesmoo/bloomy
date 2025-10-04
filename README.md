@@ -231,6 +231,8 @@ implemented using a rack-and-pinion system. A stepper motor
 drives the gear (pinion), which translates rotation into vertical
 linear motion to actuate the petals.
 
+<img width="517" height="303" alt="image" src="https://github.com/user-attachments/assets/1776ed8d-91aa-4895-b840-446cb00baa50" />
+
 Fig. 1. Rack and pinion CAD model (left) and stepper motor test with rack
 prototype (right)
 
@@ -267,6 +269,7 @@ responds based on sensor data.
 - Default flower state is closed.
 - If air quality is good:
 
+<img width="592" height="602" alt="image" src="https://github.com/user-attachments/assets/3a27bf38-e959-448c-b2f1-170500d539c5" />
 
 Fig. 2. Bloomy prototype in different bloom states with multicolor LED
 feedback
@@ -291,16 +294,14 @@ feedback into a tangible, expressive interaction.
 We conducted individual functional tests for each sensor
 to verify accurate data transmission and responsiveness. The
 Bluetooth-connected air quality sensor was evaluated under
-a variety of environmental conditions to observe how it re-
-sponded to changes in PM2.5 and CO 2 levels.
+a variety of environmental conditions to observe how it responded to changes in PM2.5 and CO 2 levels.
 
 For example, in the MakerLab, where many physical components are being actively cut, sanded, and assembled, the
 sensor consistently reported elevated PM2.5 levels. This result
 aligned with expectations, given the abundance of particulate
 matter in the space. In another test, we placed the sensor in
 a small, enclosed room with four people present. The CO 2
-readings increased significantly, reflecting reduced air circu-
-lation and increased carbon dioxide from human respiration.
+readings increased significantly, reflecting reduced air circulation and increased carbon dioxide from human respiration.
 Additionally, we performed a controlled test by manually
 exhaling onto the sensor.
 
@@ -326,10 +327,8 @@ issues will be discussed further in theChallengessection.
 ### Mechanical Noise
 
 One unexpected challenge was the noise produced by
-the stepper motor during operation. While the motor per-
-formed reliably in terms of actuation, the mechanical sound
-generated—particularly during the blooming and closing ac-
-tions—was noticeably loud. This detracted from the intended
+the stepper motor during operation. While the motor performed reliably in terms of actuation, the mechanical sound
+generated—particularly during the blooming and closing actions—was noticeably loud. This detracted from the intended
 calming and organic aesthetic of the flower, which was
 designed to subtly reflect environmental quality in a home
 setting. Future versions may explore quieter motor alternatives
@@ -341,8 +340,7 @@ device.
 Another significant challenge was the power distribution
 between the stepper motor and the NeoPixel LED ring.
 Both components demand relatively high and stable current.
-When operated simultaneously, we observed intermittent per-
-formance issues, including incomplete rotations of the stepper
+When operated simultaneously, we observed intermittent performance issues, including incomplete rotations of the stepper
 motor and erratic LED behavior. The motor, in particular,
 would sometimes stall or fail to complete the blooming cycle,
 resulting in partially open or stuck petals.
@@ -350,8 +348,7 @@ To mitigate this, we implemented a cooldown strategy:
 after every actuation, the motor is released and given a rest
 period before the next command is issued. While this improved
 reliability slightly, it did not eliminate the problem entirely.
-These symptoms suggest that a more robust power manage-
-ment strategy—such as separate power sources or capacitor
+These symptoms suggest that a more robust power management strategy—such as separate power sources or capacitor
 buffering—may be required in future iterations.
 
 ### Integration Complexity
@@ -365,8 +362,7 @@ level reliability. Designing for integration from the beginning, including thoro
 earlier in the process.
 
 ### Other Implementation Issues
-Beyond the core technical challenges, we also faced me-
-chanical design constraints. The routing of wires through the
+Beyond the core technical challenges, we also faced mechanical design constraints. The routing of wires through the
 stem, maintaining structural stability, and aligning the servo
 with the flower mechanism required multiple redesigns and
 reprints. Furthermore, limited access to high-resolution 3D
@@ -400,8 +396,7 @@ load typically associated with interpreting environmental data,
 making it especially accessible for asthma sufferers, children,
 and the elderly.
 
-Our prototype demonstrates that ambient, emotionally resonant feedback can increase engagement and promote proac-
-tive behavior without requiring constant user attention. The
+Our prototype demonstrates that ambient, emotionally resonant feedback can increase engagement and promote proactive behavior without requiring constant user attention. The
 seamless integration of sensors, wireless communication, and
 expressive actuation bridges the gap between utility and
 aesthetics—making health-relevant information feel natural,
@@ -419,8 +414,7 @@ tangible, interactive systems.
 Looking ahead, Bloomy lays the groundwork for future
 health-monitoring devices that are ambient, decorative, and emotionally aware. Future iterations may include quieter ac-
 tuation, adaptive behavior based on user habits, multi-sensor
-fusion for broader environmental insight, and long-term de-
-ployment studies to evaluate behavioral impact. We believe
+fusion for broader environmental insight, and long-term deployment studies to evaluate behavioral impact. We believe
 Bloomy’s principles can inspire a new generation of tangible
 interfaces that democratize access to environmental awareness
 and transform how we experience and respond to invisible
