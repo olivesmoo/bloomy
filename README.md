@@ -421,7 +421,8 @@ and transform how we experience and respond to invisible
 health risks in our everyday spaces.
 
 
-![3A232D2C-4BF1-4BD4-A830-2366CE20A79B_1_102_a](https://github.com/user-attachments/assets/57dbecd6-02d2-4bce-b806-6d282c146fba)
+https://github.com/user-attachments/assets/6e7e981a-f225-4bc3-8fbe-43f2d652eb45
+
 Fig. 3. Bloomy prototype displaying its response to good air quality
 
 ## REFERENCES
